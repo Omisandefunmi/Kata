@@ -1,6 +1,7 @@
 package chapterThree;
 
 import chapter3.PetrolPurchase;
+import chapter3.PetrolType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,8 +12,7 @@ public class PetrolPurchaseTest {
     private PetrolPurchase petrolPurchase;
     @BeforeEach
     public void setUp(){
-        petrolPurchase = new PetrolPurchase("Imo",
-                "crude", 3, 3.89, 3);
+        petrolPurchase = new PetrolPurchase("Imo", PetrolType.KEROSENE, 3, 3.89, 3);
     }
 
     @Test
@@ -34,8 +34,17 @@ public class PetrolPurchaseTest {
     @Test
     public void testThatPetrolClassHasType(){
 
-        petrolPurchase.setPetrolType("crude");
-        assertEquals("crude", petrolPurchase.getPetrolType());
+        petrolPurchase.setPetrolType(PetrolType.DIESEL);
+        assertEquals(PetrolType.DIESEL, petrolPurchase.getPetrolType());
+
+
+    }
+
+    @Test
+    public void testThatPetrolClassTypeIsLimitedToThreeTypes(){
+
+        petrolPurchase.setPetrolType(PetrolType.PMS);
+        assertEquals(PetrolType.PMS, petrolPurchase.getPetrolType());
 
 
     }
@@ -50,6 +59,24 @@ public class PetrolPurchaseTest {
     }
 
     @Test
+    public void testThatPetrolQuantityCannotBeZero(){
+
+        petrolPurchase.setPetrolQuantity(0);
+        assertEquals(3, petrolPurchase.getPetrolQuantity());
+
+
+    }
+
+    @Test
+    public void testThatPetrolQuantityCannotBeNegativeNumber(){
+
+        petrolPurchase.setPetrolQuantity(-1);
+        assertEquals(3, petrolPurchase.getPetrolQuantity());
+
+
+    }
+
+    @Test
     public void testThatPetrolClassHasPrice(){
 
         petrolPurchase.setPetrolPrice(3.90);
@@ -58,20 +85,39 @@ public class PetrolPurchaseTest {
     }
 
     @Test
+    public void testThatPetrolPriceCanBeLessThanZero(){
+
+        petrolPurchase.setPetrolPrice(0);
+        assertEquals(3.89, petrolPurchase.getPetrolPrice());
+
+    }
+
+    @Test
     public void testThatPetrolClassHasPercentageDiscount(){
 
         petrolPurchase.setPercentageDiscount(3);
-        assertEquals(0.03, petrolPurchase.getPercentageDiscount());
+        assertEquals(3, petrolPurchase.getPercentageDiscount());
     }
 
     @Test
     public void testThatPetrolPurchaseConstructorExist(){
         PetrolPurchase petrolPurchase = new PetrolPurchase("Imo",
-                "crude", 3, 3.89, 3);
-        assertNotNull(petrolPurchase);
+                PetrolType.KEROSENE, 3, 3.89, 3);
+        assertEquals("Imo",petrolPurchase.getStationLocation());
+        assertEquals(PetrolType.KEROSENE, petrolPurchase.getPetrolType());
+        assertEquals( 3, petrolPurchase.getPetrolQuantity());
+        assertEquals( 3.89, petrolPurchase.getPetrolPrice());
+        assertEquals( 3, petrolPurchase.getPercentageDiscount());
 
     }
 
+    @Test
+    public void testThatPurchaseAmountCanBeCalculated(){
+        petrolPurchase.setPetrolQuantity(3);
+        petrolPurchase.setPetrolPrice(100);
+        petrolPurchase.setPercentageDiscount(10);
+        assertEquals(270, petrolPurchase.getPurchaseAmount());
+    }
 
 
 }

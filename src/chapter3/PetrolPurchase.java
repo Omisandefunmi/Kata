@@ -2,18 +2,19 @@ package chapter3;
 
 public class PetrolPurchase {
     private String stationLocation;
-    private String petrolType;
+    private PetrolType petrolType;
     private int petrolQuantity;
     private double petrolPrice;
     private double percentageDiscount;
 
-    public PetrolPurchase(String stationLocation, String petrolType,
-                          int petrolQuantity, double petrolPrice, int percentageDiscount) {
+    public PetrolPurchase(String stationLocation, PetrolType petrolType,
+                          int petrolQuantity, double petrolPrice, double percentageDiscount) {
         this.petrolPrice = petrolPrice;
         this.stationLocation = stationLocation;
         this.petrolType = petrolType;
         this.petrolQuantity = petrolQuantity;
-        this.percentageDiscount = percentageDiscount;
+
+        this.percentageDiscount = percentageDiscount/100;
     }
 
     public void setStationLocation(String stationLocation) {
@@ -24,15 +25,16 @@ public class PetrolPurchase {
         return stationLocation;
     }
 
-    public void setPetrolType(String petrolType) {
+    public void setPetrolType(PetrolType petrolType) {
         this.petrolType = petrolType;
     }
 
-    public String getPetrolType() {
+    public PetrolType getPetrolType() {
         return petrolType;
     }
 
     public void setPetrolQuantity(int petrolQuantity) {
+        if (petrolQuantity >= 1)
         this.petrolQuantity = petrolQuantity;
     }
 
@@ -42,6 +44,7 @@ public class PetrolPurchase {
     }
 
     public void setPetrolPrice(double petrolPrice) {
+        if (petrolPrice > 0)
         this.petrolPrice = petrolPrice;
     }
 
@@ -56,5 +59,11 @@ public class PetrolPurchase {
 
     public double getPercentageDiscount() {
         return percentageDiscount * 100;
+    }
+
+    public double getPurchaseAmount() {
+        double discountAmount = petrolPrice * petrolQuantity * percentageDiscount;
+        double netAmount = petrolPrice * petrolQuantity - discountAmount;
+        return netAmount;
     }
 }
