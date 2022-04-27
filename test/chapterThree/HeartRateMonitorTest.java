@@ -54,12 +54,6 @@ public class HeartRateMonitorTest {
         assertEquals("Wale Yinka",heartRateMonitor.getName());
     }
 
-//    @Test
-//    public void testThatHeartMonitorDateOfBirth(){
-//        heartRateMonitor.setDateOfBirth(4, 6, 2020);
-//        assertEquals();
-//
-//
-//    }
+
 
 }

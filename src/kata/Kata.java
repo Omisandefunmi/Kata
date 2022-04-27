@@ -34,4 +34,13 @@ public class Kata {
 
         return newString;
     }
+
+    public static double convertToKelvin(double celsiusValue) {
+
+        return celsiusValue + 273.15;
+    }
+
+    public static double convertToCelsius(double kelvinValue) {
+        return kelvinValue - 273.15;
+    }
 }

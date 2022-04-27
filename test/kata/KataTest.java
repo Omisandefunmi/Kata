@@ -32,6 +32,19 @@ public class KataTest {
         assertEquals("Olufunmi chidinma.", string);
     }
 
+    @Test
+    public void convertToKelvinTest(){
+        double kelvinTemperature = Kata.convertToKelvin(10.0);
+        assertEquals(283.15, kelvinTemperature);
+
+    }
+
+    @Test
+    public void convertToCelsiusTest(){
+        double celsius = Kata.convertToCelsius(10.0);
+        assertEquals(-263.15, celsius);
+    }
+
 
 
 }
