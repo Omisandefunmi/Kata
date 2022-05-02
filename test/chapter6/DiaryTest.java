@@ -130,21 +130,5 @@ public class DiaryTest {
         assertEquals("New title || This is a new content || "+date, entry);
     }
 
-//    @Test
-//    public void lockAndUnlockIsAToggle(){
-//        diary.lockDiary();
-//
-//    }
-
-//    @Test
-//    public void allFunctionsAreOffWhenDiaryIsLockedTest(){
-//        diary.lockDiary("password");
-//        diary.write("read me", "i love meat", "password");
-//        assertEquals(0, diary.getNoOfEntries());
-//    }
-
-
-
-
 
 }

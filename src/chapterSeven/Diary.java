@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public class Diary {
 
 
-    private String userName;
-    private int noOfEntries ;
+    private final String userName;
     private String password;
     private final ArrayList <Entry> entries;
     
@@ -30,7 +29,7 @@ public class Diary {
         return "Entry "+entryId+ " not found!";
     }
     public int getNoOfEntries() {
-        return noOfEntries;
+        return entries.size();
     }
 
     public String getUserName() {
@@ -46,12 +45,11 @@ public class Diary {
     }
 
     private boolean validatePassword(String password){
-        return getPassword().equalsIgnoreCase(password);
+        return getPassword().equals(password);
 
     }
 
     public void write(String title, String body, String password) {
-        noOfEntries++;
 
         boolean isValid = validatePassword(password);
         if(!isValid){
@@ -68,15 +66,15 @@ public class Diary {
 
     public void deleteEntryBy(int entryNumber, String password) {
        int index = entryNumber - 1;
-       entries.remove(index);
-       noOfEntries--;
+       if(getPassword().equals(password)) {
+           entries.remove(index);
+       }
     }
 
 
     public boolean lockDiary(String password) {
         boolean isLock = getPassword().equals(password);
         if(!isLock) {
-//            throw new IllegalArgumentException("Wrong password!!! Diary not locked");
             System.out.println("Wrong password!!! Diary not locked");
             return false;
         }
@@ -91,7 +89,6 @@ public class Diary {
     public boolean unlockDiary(String password) {
         boolean unlock = getPassword().equals(password);
         if (!unlock){
-//            throw new IllegalArgumentException("Wrong password!!! Diary still locked!!!");
             System.out.println("Wrong password!!! Diary still locked!!!");
             return false;
 
@@ -116,7 +113,6 @@ public class Diary {
             Entry entry = entries.get(i);
             if(entry.getTitle().equals(entryTitle) && getPassword().equals(password)){
                 entries.remove(entry);
-                noOfEntries--;
             }
         }
     }
