@@ -43,4 +43,20 @@ public class Kata {
     public static double convertToCelsius(double kelvinValue) {
         return kelvinValue - 273.15;
     }
+
+    public static int[] fillIntegerArray(int length, int element) {
+        int [] array = new int[length];
+        for (int i = 0; i < length; i++) {
+            array[i] = element;
+        }
+        return array;
+    }
+
+//    public static int[] replaceElementsInArray(int index, int newElement) {
+//        int array
+//        array[index] = newElement;
+//
+//
+//
+//    }
 }

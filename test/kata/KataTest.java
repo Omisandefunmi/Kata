@@ -45,6 +45,20 @@ public class KataTest {
         assertEquals(-263.15, celsius);
     }
 
+    @Test
+    public void fillArray(){
+        int [] result = Kata.fillIntegerArray(10,-1);
+        assertEquals(-1, result[6]);
+
+    }
+
+//    @Test
+//    public void replaceElementsInArray(){
+//        int [] array = new int[10];
+//        array[0] = Kata.replaceElementsInArray(-1, 8);
+//        assertEquals(8, array[0]);
+//    }
+
 
 
 }
