@@ -106,7 +106,7 @@ public class AirlineReservationSystem {
                         serveEconomyTicket();
                         break;
                     case 2:
-                        System.out.println(thankYouMessage);
+                        System.out.println(THANK_YOU_MESSAGE);
                         break;
                     default:
                         System.out.printf("Invalid option!!!%s", space);
@@ -137,7 +137,7 @@ public class AirlineReservationSystem {
                     serveFirstClassTicket();
                     break;
                 case 2:
-                    System.out.println(thankYouMessage);
+                    System.out.println(THANK_YOU_MESSAGE);
                     break;
                 default:
                     System.out.printf("Invalid option!!!%s", space);
@@ -149,7 +149,7 @@ public class AirlineReservationSystem {
 
 
 
-    private static final String decor = ">>>> ".repeat(8);
+    private static final String DECOR = ">>>> ".repeat(8);
     private static String space = ("\n".repeat(5));
     private static final String welcomeAddress = String.format("""
                 %s
@@ -158,12 +158,12 @@ public class AirlineReservationSystem {
                 
                 PRESS 1 TO BUY A FIRST CLASS TICKET 
                 
-                PRESS 2 TO BUY AN ECONOMY TICKET %s""", decor, decor, space);
+                PRESS 2 TO BUY AN ECONOMY TICKET %s""", DECOR, DECOR, space);
 
 
 
 
-    private static final String thankYouMessage = "THANK YOU FOR CHOOSING SEMICOLON AIRWAYS";
+    private static final String THANK_YOU_MESSAGE = "THANK YOU FOR CHOOSING SEMICOLON AIRWAYS";
 
 
 
