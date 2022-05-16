@@ -1,6 +1,6 @@
-package chapter6;
+package diaryTest;
 
-import chapterSeven.Diary;
+import diary.Diary;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -46,7 +46,7 @@ public class DiaryTest {
         diary.setPassword("password");
         diary.write( "My Love","The name of my Love is Joel", "password");
         assertEquals(1, diary.getNoOfEntries());
-        String found = diary.findEntryBy(1, "password");
+        String found = diary.findEntryById(1, "password");
 
         assertEquals("My Love || The name of my Love is Joel || "+date, found);
 
@@ -59,12 +59,12 @@ public class DiaryTest {
         assertEquals(1, diary.getNoOfEntries());
         diary.write("Lagos men are scum", "dear diary, femi broke my heart today! can you imagine?", "password");
         assertEquals(2, diary.getNoOfEntries());
-        String found = diary.findEntryBy(2, "password");
+        String found = diary.findEntryById(2, "password");
 
         assertEquals("Lagos men are scum || dear diary, femi broke my heart today! can you imagine? || "+date, found);
         diary.deleteEntryBy(2, "password");
         assertEquals(1, diary.getNoOfEntries());
-        String found2 = diary.findEntryBy(1, "password");
+        String found2 = diary.findEntryById(1, "password");
 
         assertEquals("My Day || dear diary, i had garri today! can you imagine? || "+date,found2);
 
@@ -126,7 +126,7 @@ public class DiaryTest {
         diary.write("Lagos men are scum", "dear diary, femi broke my heart today! can you imagine?", "password");
         assertEquals(2, diary.getNoOfEntries());
         diary.editEntry(1, "New title", "This is a new content", "Olufunmi","password");
-        String entry = diary.findEntryBy(1, "password");
+        String entry = diary.findEntryById(1, "password");
         assertEquals("New title || This is a new content || "+date, entry);
     }
 

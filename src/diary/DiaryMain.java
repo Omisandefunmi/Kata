@@ -1,4 +1,6 @@
-package chapterSeven;
+package diary;
+
+import diary.Diary;
 
 import java.util.Scanner;
 
@@ -9,7 +11,7 @@ public class DiaryMain {
 
 
     private static final Scanner scanner = new Scanner(System.in);
-    private static  Diary diary;
+    private static Diary diary;
     private static final String MENU =  """
                 Press
                 1 - To create an entry
@@ -138,7 +140,7 @@ public class DiaryMain {
         int entryID = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.println(diary.findEntryBy(entryID, pin));
+        System.out.println(diary.findEntryById(entryID, pin));
         System.out.println("\n".repeat(3));
         sortChoice();
     }
@@ -188,7 +190,6 @@ public class DiaryMain {
                 System.out.println("Enter password");
                 String pin = scanner.nextLine();
                 diary.deleteEntryBy(entryId, pin);
-                System.out.println("Entry "+entryId+ " deleted!!!");
                 sortChoice();
                 break;
 
@@ -216,7 +217,8 @@ public class DiaryMain {
     }
 
     private static void viewEntries() {
-        System.out.println(diary.getUserName().toUpperCase()+" DIARY");
+
+        System.out.println(diary.getOwnerName().toUpperCase()+" DIARY");
         System.out.println("\n".repeat(2));
         diary.printDiary();
         System.out.println("\n".repeat(3));

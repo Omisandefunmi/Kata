@@ -1,5 +1,6 @@
-package chapterSeven;
+package diaryTest;
 
+import diary.Entry;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class EntryTest {
 
     private Entry entry;
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E, dd/MM/yyyy, hh:mm a");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E, dd/MM/yyyy, hh:mm, a");
     private final String date = formatter.format(LocalDateTime.now());
     @BeforeEach
     void setUp() {
@@ -31,6 +32,8 @@ class EntryTest {
     @Test
     void getDate() {
         assertEquals(date, entry.getDate());
+        LocalDateTime localDateTime = LocalDateTime.now();
+        System.out.println(localDateTime);
 
     }
 }

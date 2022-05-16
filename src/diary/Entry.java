@@ -1,4 +1,4 @@
-package chapterSeven;
+package diary;
 
 import java.text.DateFormat;
 import java.time.LocalDate;
@@ -8,17 +8,10 @@ import java.time.format.DateTimeFormatter;
 public class Entry {
     private String title;
     private String body;
-//    private LocalDate localDate;
-
-//    private int id;
-    private static String date;
+    private LocalDateTime date = LocalDateTime.now();
 
 
     public Entry(String title,  String body) {
-        LocalDateTime localDateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E, dd/MM/yyyy, hh:mm a");
-        date = formatter.format(localDateTime);
-
         this.title = title;
         this.body = body;
 
@@ -36,7 +29,17 @@ public class Entry {
     }
     
     public String getDate(){
-        return date;
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("E, dd/MM/yyyy, hh:mm");
+
+        return dateTimeFormatter.format(date);
+    }
+    @Override
+    public String toString(){
+        return String.format("""
+                Date : %s
+                Title: %s
+                
+                Body: %s""", getDate(),getTitle(),getBody());
     }
 
 
