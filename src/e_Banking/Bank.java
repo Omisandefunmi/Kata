@@ -30,10 +30,10 @@ public class Bank {
         return accountNumber;
     }
 
-    public boolean closeAccount(String accountNumber, String bvn, String pin) {
+    public boolean closeAccount(String accountNumber, String bvn) {
         for (int i = 0; i < accounts.size(); i++) {
             Account foundAccount = accounts.get(i);
-            if(foundAccount.bvnIsValid(bvn) && foundAccount.pinIsValid(pin)){
+            if(foundAccount.bvnIsValid(bvn)){
                 if (foundAccount.getAccountNumber().equals(accountNumber)){
                     accounts.remove(foundAccount);
                     numberOfCustomers--;

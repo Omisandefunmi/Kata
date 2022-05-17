@@ -92,7 +92,7 @@ public class AirlineReservationSystem {
 
             String redirectToEconomyMessage =("""
                                                 Oops!!! First class seats are all taken.
-                                                Would you mind buying an Economy ticket?
+                                                Will you like to buy an Economy ticket?
                                                                     
                                                 If YES, press 1
                                                 If NO, press 2
@@ -123,7 +123,7 @@ public class AirlineReservationSystem {
 
         String redirectToFirstClassMessage =("""
                                                Oops!!! Economy seats are all taken.
-                                               Would you mind buying an Economy ticket?
+                                               Will you like to buy an Economy ticket?
                                                                     
                                                If YES, press 1
                                                If NO, press 2

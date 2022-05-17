@@ -8,13 +8,6 @@ public class ATM {
         runBankApp();
     }
 
-
-
-
-
-
-
-
     private static final String WELCOME_ADDRESS = """
             WELCOME TO GTB
                 
@@ -397,7 +390,7 @@ public class ATM {
         System.out.println("Enter your pin");
         String pin = scanner.nextLine();
 
-        if(gtb.closeAccount(cacheAccountNumber, bvn, pin)){
+        if(gtb.closeAccount(cacheAccountNumber, bvn)){
             System.out.println("Account closed successfully");}
         else
             System.out.println("""
