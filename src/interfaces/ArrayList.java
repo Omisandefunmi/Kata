@@ -18,24 +18,12 @@ public class ArrayList implements List{
     public void add(int index, String item) {
         String [] newdb = new String[db.length +1];
         int realIndex = index - 1;
-        String [] tempArray = new String[db.length - realIndex];
-        for (int i = 0; i < index; i++) {
-            if(i == realIndex){
-                newdb[i] = item;
-            }
-            else
-                newdb[i] = db[i];
-        }
-        int tempIndex = 0;
-        for (int i = index; i < tempArray.length; i++) {
-            tempArray[tempIndex] = db[i];
-            tempIndex +=1;
-        }
 
-        int arrayIndex = 0;
-        for (int i = index; i < newdb.length; i++) {
-            newdb[index] = tempArray[arrayIndex];
-            arrayIndex++;
+        int loop = 0;
+        while(loop < newdb.length){
+            if(loop == realIndex){newdb[loop] = item;}
+            else{newdb[loop] = db[loop];}
+            loop++;
         }
         db = newdb;
         counter++;

@@ -1,36 +1,44 @@
 package dsa;
-
-import interfaces.ArrayList;
-
 public class Queue {
-    private ArrayList arrayList;
     private int counter;
-    private String[] elements = new String[5];
+    private final String[] elements = new String[5];
+    private int numberOfPoppedItems;
+
     public boolean isEmpty() {
-        if (counter == 0)
+        if (numberOfPoppedItems == counter)
             return true;
         else
             return false;
     }
 
     public void push(String element) {
-        if (counter == elements.length){
-            elements[counter - 1] = element;
+        boolean isFull = counter == elements.length;
+        boolean isNullIndexAvailable = elements[0] == null;
+        if (isFull && isNullIndexAvailable){
+            refillQueueFromIndexZero();
+            implementAdd(element);
         }
-            else {
-            elements[counter] = element;
-            counter++;}
+            else if(!isFull) {implementAdd(element);}
+            else{ throw new ArrayIndexOutOfBoundsException("Queue is full");
+    }
     }
 
+
+
     public String pop() {
-        String removed = elements[0];
-        elements[0] = null;
-        counter--;
-        for (int i = 0; i < size(); i++) {
-            elements[i] = elements[i + 1];
+        int count = 0;
+        String removed = "";
+        boolean indexNotNull = elements[count] != null;
+        while(count < size()){
+        if(!indexNotNull){
+            removed = removeElementAt(count);
+            break;
+        }
+        else count++;
         }
         return removed;
     }
+
 
     public String peek() {
         return elements[counter-1];
@@ -45,5 +53,35 @@ public class Queue {
         return elements[index-1];
     }
 
+
+    public int checkNumberOfPoppedItem() {
+        return numberOfPoppedItems;
+    }
+
+    private void refillQueueFromIndexZero() {
+        counter = 0;
+        int index = 0;
+        for (int i = 1; i < elements.length; i++) {
+            if(elements[i] != null){
+                elements[index] = elements[i];
+                index++;
+                counter++;
+            }
+        }
+    }
+
+    private void implementAdd(String element){
+        elements[counter] = element;
+        counter++;
+
+    }
+
+    private String removeElementAt(int count) {
+        String removed;
+        removed = elements[count];
+        elements[count] = null;
+        numberOfPoppedItems++;
+        return removed;
+    }
 
 }

@@ -15,7 +15,7 @@ public class ATM {
             1 --> OPEN AN ACCOUNT
             2 --> LOG IN
             3 --> EXIT""";
-    private static final String LOG_IN_OPTIONS = """
+    private static final String TRANSACTIONS_OPTIONS = """
                 
                 1 --> CHECK BALANCE
                 2 --> CREDIT ACCOUNT
@@ -25,7 +25,7 @@ public class ATM {
                 6 --> BUY AIRTIME
                 7 --> BUY DATA
                 8 --> CLOSE ACCOUNT
-                9 --> EXIT""";
+                9 --> LOG OUT""";
     private static final Scanner scanner = new Scanner(System.in);
     private static final Bank gtb = new Bank("gtb");
 
@@ -37,16 +37,16 @@ public class ATM {
 
     public static void runBankApp(){
         while(banking){
-            printWelcomeAddress();
+            displayHomePage();
             selectLogInChoice();
 
         }
     }
 
-    public static void printLogInOptions(){
+    public static void displayTransactionOptions(){
         if (cacheAccountNumber != null && cachePin != null){
-            System.out.println(LOG_IN_OPTIONS);
-            selectOptions();}
+            System.out.println(TRANSACTIONS_OPTIONS);
+            chooseTransactionType();}
         else {
             System.out.printf("""
                     You do not have an account with us at %s
@@ -58,7 +58,7 @@ public class ATM {
                                 exit();}
                 default -> {
                     System.out.println("Dear customer, you may have entered an unrecognized option!!!");
-                    printLogInOptions();
+                    displayTransactionOptions();
                 }
             }
         }
@@ -68,24 +68,24 @@ public class ATM {
         String logInChoice = scanner.nextLine();
         switch (logInChoice) {
             case "1" -> openAccount();
-            case "2" -> printLogInOptions();
+            case "2" -> displayTransactionOptions();
             case "3" -> exit();
             default -> {
                 System.out.println("Invalid input");
-                printWelcomeAddress();
+                displayHomePage();
                 selectLogInChoice();
             }
         }
 
     }
-    public static void printWelcomeAddress(){
+    public static void displayHomePage(){
         System.out.println(WELCOME_ADDRESS);
         selectLogInChoice();
     }
 
 
 
-    private static void selectOptions(){
+    private static void chooseTransactionType(){
         String choice = scanner.nextLine();
         switch (choice) {
             case "1" -> checkBalance();
@@ -96,13 +96,16 @@ public class ATM {
             case "6" -> buyAirtime();
             case "7" -> buyData();
             case "8" -> closeAccount();
-            case "9" -> exit();
+            case "9" -> logOut();
             default -> {
                 System.out.println("Invalid input");
-                printLogInOptions();
+                displayTransactionOptions();
             }
         }
     }
+
+
+
     private static void changePin() {
 
         System.out.println("Enter old pin: ");
@@ -123,7 +126,7 @@ public class ATM {
                     
                     Ensure that you provide the correct details""");
         }
-        printLogInOptions();
+        displayTransactionOptions();
 
     }
 
@@ -141,12 +144,12 @@ public class ATM {
                 System.out.println("Transfer successful");
             }
             else{
-                System.out.println("Insufficient funds");}
+                System.out.println("Dear customer, your account balance is insufficient for this transaction");}
         }
         else{
             System.out.println("Incorrect pin");
         }
-        printLogInOptions();
+        displayTransactionOptions();
     }
 
     private static void openAccount() {
@@ -165,14 +168,14 @@ public class ATM {
         cacheAccountNumber = gtb.createAccount(lastName, firstName, pin, bvn);
         cachePin = pin;
         System.out.println(gtb.getBankName().toUpperCase()+" Account created with account number "+cacheAccountNumber);
-        printLogInOptions();
+        displayTransactionOptions();
 
 
     }
 
     private static void checkBalance() {
         System.out.println("Dear customer, your account balance is "+gtb.checkBalanceOf(cacheAccountNumber)+ " naira");
-        printLogInOptions();
+        displayTransactionOptions();
 
     }
 
@@ -183,7 +186,7 @@ public class ATM {
 
         gtb.deposit(amount, cacheAccountNumber);
         System.out.println("Transaction successful!!!");
-        printLogInOptions();
+        displayTransactionOptions();
     }
 
     private static void withdrawFromAccount() {
@@ -202,7 +205,7 @@ public class ATM {
         else{
             System.out.println("Pin is Incorrect");
         }
-        printLogInOptions();
+        displayTransactionOptions();
     }
 
     private static void buyAirtime() {
@@ -221,8 +224,8 @@ public class ATM {
             case "3" -> gloAirtime();
             case "4" -> etisalatAirtime();
             case "5" -> {
-                printLogInOptions();
-                selectOptions();
+                displayTransactionOptions();
+                chooseTransactionType();
             }
             default -> {
                 System.out.println("Invalid input");
@@ -298,7 +301,7 @@ public class ATM {
             case "2" -> airtelData();
             case "3" -> gloData();
             case "4" -> etisalatData();
-            case "5" -> printLogInOptions();
+            case "5" -> displayTransactionOptions();
             default -> {
                 System.out.println("Invalid input");
                 buyData();
@@ -373,10 +376,10 @@ public class ATM {
 
         switch (closeAccountChoice.toLowerCase()) {
             case "yes" -> implementCloseAccount();
-            case "no" -> printLogInOptions();
+            case "no" -> displayTransactionOptions();
             default -> {
                 System.out.println("Unrecognized value inputted");
-                printLogInOptions();
+                displayTransactionOptions();
             }
         }
 
@@ -394,12 +397,15 @@ public class ATM {
             System.out.println("Account closed successfully");}
         else
             System.out.println("""
-                    Account close unsuccessfull!!!
+                    Account close unsuccessfully!!!
                     
                     Enter correct details or visit our nearest branch for assistance""");
-        printLogInOptions();
+        displayTransactionOptions();
     }
 
+    private static void logOut() {
+        displayHomePage();
+    }
     private static void exit() {
         System.out.println("THANK YOU FOR BANKING WITH US");
         banking = false;

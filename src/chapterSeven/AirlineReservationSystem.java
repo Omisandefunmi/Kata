@@ -8,8 +8,8 @@ public class AirlineReservationSystem {
     public static void main(String[] args) {
 
             printHeader();
-
             serveChosenTicketType();
+            displayArrayElement();
 
             }
 
@@ -35,6 +35,9 @@ public class AirlineReservationSystem {
 
 
     }
+    public static void displayArrayElement() {
+        System.out.println(Arrays.toString(seats));
+    }
 
     public static void serveChosenTicketType(){
         ticketType = scanner.nextInt();
@@ -49,10 +52,6 @@ public class AirlineReservationSystem {
                     serveChosenTicketType();
                 }
             }
-
-        System.out.println(Arrays.toString(seats));
-
-
     }
 
     private static void serveFirstClassTicket() {
@@ -62,7 +61,7 @@ public class AirlineReservationSystem {
 
             System.out.println("Your first class ticket has been successfully booked. Your seat number is " + (countA + 1));
             System.out.println("WISHING YOU A PLEASANT SKY EXPERIENCE!!!");
-            System.out.println(space);
+            System.out.println(SPACE);
             countA++;
             printHeader();
             serveChosenTicketType();
@@ -79,7 +78,7 @@ public class AirlineReservationSystem {
                 seats [countB] = true;
                 System.out.println("Your economy ticket has been successfully booked. Your seat number is "+(countB+1));
                 System.out.println("WISHING YOU A PLEASANT SKY EXPERIENCE!!!");
-                System.out.println(space);
+                System.out.println(SPACE);
                 countB++;
                 printHeader();
                 serveChosenTicketType();
@@ -101,20 +100,14 @@ public class AirlineReservationSystem {
 
                 System.out.println(redirectToEconomyMessage);
                 int redirectChoice = scanner.nextInt();
-                switch (redirectChoice){
-                    case 1:
-                        serveEconomyTicket();
-                        break;
-                    case 2:
-                        System.out.println(THANK_YOU_MESSAGE);
-                        break;
-                    default:
-                        System.out.printf("Invalid option!!!%s", space);
-                        redirectToEconomy();
-
-
-
+            switch (redirectChoice) {
+                case 1 -> serveEconomyTicket();
+                case 2 -> System.out.println(THANK_YOU_MESSAGE);
+                default -> {
+                    System.out.printf("Invalid option!!!%s", SPACE);
+                    redirectToEconomy();
                 }
+            }
             }
 
 
@@ -132,17 +125,14 @@ public class AirlineReservationSystem {
 
             System.out.println(redirectToFirstClassMessage);
             int redirectChoice = scanner.nextInt();
-            switch (redirectChoice){
-                case 1:
-                    serveFirstClassTicket();
-                    break;
-                case 2:
-                    System.out.println(THANK_YOU_MESSAGE);
-                    break;
-                default:
-                    System.out.printf("Invalid option!!!%s", space);
-                    redirectToFirstClass();
+        switch (redirectChoice) {
+            case 1 -> serveFirstClassTicket();
+            case 2 -> System.out.println(THANK_YOU_MESSAGE);
+            default -> {
+                System.out.printf("Invalid option!!!%s", SPACE);
+                redirectToFirstClass();
             }
+        }
 
     }
 
@@ -150,15 +140,15 @@ public class AirlineReservationSystem {
 
 
     private static final String DECOR = ">>>> ".repeat(8);
-    private static String space = ("\n".repeat(5));
+    private static final String SPACE = ("\n".repeat(5));
     private static final String welcomeAddress = String.format("""
                 %s
                     WELCOME TO SEMICOLON AIRWAYS
                 %s
                 
-                PRESS 1 TO BUY A FIRST CLASS TICKET 
+                PRESS 1 TO BUY A FIRST CLASS TICKET
                 
-                PRESS 2 TO BUY AN ECONOMY TICKET %s""", DECOR, DECOR, space);
+                PRESS 2 TO BUY AN ECONOMY TICKET %s""", DECOR, DECOR, SPACE);
 
 
 

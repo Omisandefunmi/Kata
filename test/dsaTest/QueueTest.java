@@ -26,7 +26,7 @@ public class QueueTest {
 
     @Test
     public void pushElement_QueueNotEmpty(){
-        queue.push("first guy in Otunba");
+        queue.push("first guy");
         assertFalse(queue.isEmpty());
     }
 
@@ -37,6 +37,36 @@ public class QueueTest {
         assertTrue(queue.isEmpty());
     }
 
+    @Test
+    public void poppedElementCanBeCountedTest(){
+        queue.push("first guy in");
+        queue.push("first");
+        queue.push("second");
+        queue.push("third");
+        queue.push("fourth");
+        queue.pop();
+        queue.pop();
+        assertEquals(5, queue.size());
+        assertEquals(2, queue.checkNumberOfPoppedItem());
+    }
+
+    @Test
+    public void testThatQueueCanPushWhenAllElementsArePopped(){
+        queue.push("first guy in");
+        queue.push("first");
+        queue.push("second");
+        queue.push("third");
+        queue.push("fourth");
+        queue.pop();
+        queue.pop();
+        queue.pop();
+        queue.pop();
+        assertEquals(5, queue.size());
+        assertEquals(4, queue.checkNumberOfPoppedItem());
+        queue.push("hiya!");
+        assertEquals("fourth", queue.peek(1));
+        assertEquals("hiya!", queue.peek(2));
+    }
     @Test
     public void pushElement_peekElement(){
         queue.push("first");
@@ -69,29 +99,31 @@ public class QueueTest {
     }
 
     @Test
-    public void pushElements_PopOnlyFirstElement(){
+    public void pushElements_PopOnlyFirstNotNullElement(){
         queue.push("first");
         queue.push("second");
         queue.push("third");
         queue.push("fourth");
-        String popped = queue.pop();
-        assertEquals("first", popped);
-        assertNotNull(queue.peek(1));
-        String peeked = queue.peek(1);
-        assertEquals("second", peeked);
+        queue.pop();
+        queue.pop();
+        assertNull(queue.peek(1));
+        assertNull(queue.peek(2));
+        assertEquals("third", queue.peek(3));
+
+
     }
 
 
     @Test
-    public void otherElementsInQueueAdjustAfterPop(){
+    public void otherElementsInQueueDoNotAddJustAfterAPop(){
         queue.push("first");
         queue.push("second");
         queue.push("third");
         queue.push("fourth");
         queue.pop();
-        assertEquals("second", queue.peek(1));
+        assertNull(queue.peek(1));
         queue.pop();
-        assertEquals("third", queue.peek(1));
+        assertEquals("third", queue.peek(3));
     }
 
     @Test
