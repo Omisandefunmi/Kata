@@ -10,131 +10,102 @@ public class QueueTest {
     private Queue queue;
 
     @BeforeEach
-    public void setUp(){
+    public void alwaysStartWith() {
         queue = new Queue();
     }
 
     @Test
-    public void testThatQueueExist(){
+    public void testThatQueueExist() {
+        Queue queue = new Queue();
         assertNotNull(queue);
     }
 
     @Test
-    public void queueIsEmpty(){
+    public void testThatQueueIsEmpty() {
         assertTrue(queue.isEmpty());
     }
 
     @Test
-    public void pushElement_QueueNotEmpty(){
-        queue.push("first guy");
-        assertFalse(queue.isEmpty());
+    public void testThatQueueCanPush() {
+        queue.push("true");
+        assertEquals(1, queue.size());
     }
 
     @Test
-    public void pushElement_popElement_QueueIsEmpty(){
-        queue.push("first guy in");
-        queue.pop();
-        assertTrue(queue.isEmpty());
-    }
-
-    @Test
-    public void poppedElementCanBeCountedTest(){
-        queue.push("first guy in");
-        queue.push("first");
-        queue.push("second");
-        queue.push("third");
-        queue.push("fourth");
-        queue.pop();
-        queue.pop();
-        assertEquals(5, queue.size());
-        assertEquals(2, queue.checkNumberOfPoppedItem());
-    }
-
-    @Test
-    public void testThatQueueCanPushWhenAllElementsArePopped(){
-        queue.push("first guy in");
-        queue.push("first");
-        queue.push("second");
-        queue.push("third");
-        queue.push("fourth");
-        queue.pop();
-        queue.pop();
-        queue.pop();
-        queue.pop();
-        assertEquals(5, queue.size());
-        assertEquals(4, queue.checkNumberOfPoppedItem());
-        queue.push("hiya!");
-        assertEquals("fourth", queue.peek(1));
-        assertEquals("hiya!", queue.peek(2));
-    }
-    @Test
-    public void pushElement_peekElement(){
-        queue.push("first");
-        String peek = queue.peek();
-        assertEquals("first", peek);
-    }
-
-    @Test
-    public void pushTwoElements_peekLastElement(){
-        queue.push("first");
-        queue.push("second");
-        assertEquals("second", queue.peek());
-    }
-
-    @Test
-    public void queueCanPeekByIndex(){
-        queue.push("first");
-        queue.push("second");
-        queue.push("third");
-        queue.push("fourth");
-        assertEquals("third", queue.peek(3));
-    }
-
-    @Test
-    public void queueSizeCorrespondsWithElementsContainedTest(){
-        queue.push("first");
-        queue.push("second");
-        queue.push("second");
+    public void testThatQueueCanPushMultipleElements() {
+        queue.push("true");
+        queue.push("tree");
+        queue.push("tru");
         assertEquals(3, queue.size());
     }
 
     @Test
-    public void pushElements_PopOnlyFirstNotNullElement(){
-        queue.push("first");
-        queue.push("second");
-        queue.push("third");
-        queue.push("fourth");
-        queue.pop();
-        queue.pop();
-        assertNull(queue.peek(1));
-        assertNull(queue.peek(2));
-        assertEquals("third", queue.peek(3));
-
-
-    }
-
-
-    @Test
-    public void otherElementsInQueueDoNotAddJustAfterAPop(){
-        queue.push("first");
-        queue.push("second");
-        queue.push("third");
-        queue.push("fourth");
-        queue.pop();
-        assertNull(queue.peek(1));
-        queue.pop();
-        assertEquals("third", queue.peek(3));
+    public void testThatQueueCanPeekLastElementIn() {
+        queue.push("true");
+        queue.push("tree");
+        queue.push("tru");
+        String peeked = queue.peek();
+        assertEquals("tru", peeked);
     }
 
     @Test
-    public void overwriteLastElementIfQueueIsFilledTest(){
-        queue.push("first");
-        queue.push("second");
-        queue.push("third");
-        queue.push("fourth");
-        queue.push("fifth");
+    public void testThatQueueCanPeekOtherElements() {
+        queue.push("true");
+        queue.push("tree");
+        queue.push("tutu");
+        queue.push("tru");
+        String peeked = queue.peek(3);
+        assertEquals("tutu", peeked);
+    }
+
+    @Test
+    public void testThatQueueCanPopFirstElement() {
+        queue.push("true");
+        queue.push("tree");
+        queue.push("tutu");
+        queue.push("tru");
+        String popped = queue.pop();
+        assertEquals("true", popped);
+    }
+
+    @Test
+    public void testThatQueueCanPopMoreThanOnce() {
+        queue.push("true");
+        queue.push("tree");
+        queue.push("tutu");
+        queue.push("tru");
+        String popped = queue.pop();
+        assertEquals("true", popped);
+        String popped2 = queue.pop();
+        assertEquals("tree", popped2);
+    }
+
+    @Test
+    public void testThatQueueSizeReducesAfterPop() {
+        queue.push("true");
+        queue.push("tree");
+        queue.push("tutu");
+        queue.push("tru");
+        queue.pop();
+        queue.pop();
+        assertEquals(2, queue.size());
+    }
+
+    @Test
+    public void testThatQueueCanRefillNullArraysWhenLastIndexIsFilled() {
+        queue.push("true");
+        queue.push("tree");
+        queue.push("tutu");
+        queue.push("tru");
+        queue.display();
+        queue.pop();
+        queue.pop();
+        queue.display();
+        queue.push("forest");
+        queue.push("animals");
+        queue.push("people");
+        queue.display();
         assertEquals(5, queue.size());
-        queue.push("sixth");
-        assertEquals(5, queue.size());
+
     }
 }
