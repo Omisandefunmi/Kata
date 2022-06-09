@@ -12,8 +12,5 @@ public class DuplicateElimination {
         }
         System.out.println();
     }
-
-
-
 }
 

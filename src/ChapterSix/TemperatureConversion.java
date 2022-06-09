@@ -1,5 +1,6 @@
 package ChapterSix;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TemperatureConversion {
@@ -45,17 +46,17 @@ public class TemperatureConversion {
         return temperatureInCelsius+" celsius is "+(temperatureInCelsius + 273.15)+" in Kelvin";
     }
 
-    public static void convertTemperature(){
+    public static void convertTemperature() {
 
         String options = """
                 WELCOME TO TEMPERATURE CONVERSION APP
-                
+                                
                 PRESS 1 TO CONVERT KELVIN TO CELSIUS
-                
+                                
                 PRESS 2 TO CONVERT CELSIUS TO KELVIN""";
         System.out.println(options);
-        int choice = input.nextInt();
-        switch (choice){
+        try {int choice = input.nextInt();
+        switch (choice) {
             case 1:
                 System.out.println(kelvinToCelsius());
                 break;
@@ -66,9 +67,10 @@ public class TemperatureConversion {
                 System.out.println("Invalid value");
                 convertTemperature();
 
-    }
-
-
+        }
+    }catch (InputMismatchException ex) {
+            System.out.println(ex.getMessage());
+        }
    }
 
 

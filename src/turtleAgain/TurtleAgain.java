@@ -6,7 +6,6 @@ public class TurtleAgain {
     private Pen pen = new Pen();
     private Direction currentDirection = Direction.EAST;
     private TurtlePosition turtlePosition = new TurtlePosition(0, 0);
-    private SketchPad sketchPad = new SketchPad(20, 20);
 
 
 
@@ -46,12 +45,52 @@ public class TurtleAgain {
         return new TurtlePosition(turtlePosition.getRow(), turtlePosition.getColumn());
     }
 
-    public void moveForward(int steps) {
+    public void move(int steps, SketchPad sketchPad) {
+        if(!isPenUp()){
+        if(currentDirection == Direction.EAST){writeForwardOnColumnBy(steps, sketchPad);}
+        if(currentDirection == Direction.SOUTH){writeDownwardOnRowBy(steps, sketchPad);}
+        if(currentDirection == Direction.WEST){writeBackwardOnColumnBy(steps, sketchPad);}
+    }
+
         if(currentDirection == Direction.EAST){increaseColumnBy(steps); }
         else if(currentDirection == Direction.SOUTH){increaseRowBy(steps);}
         else if(currentDirection == Direction.WEST){decreaseColumnBy(steps);}
         else{decreaseRowBy(steps);}
         }
+
+    private void writeBackwardOnColumnBy(int steps, SketchPad sketchPad) {
+        int [][] floor = sketchPad.getFloor();
+        int row = turtlePosition.getRow();
+        int column = turtlePosition.getColumn();
+        steps -= column;
+        for (int i = column; i < steps; i--) {
+            floor[row][i] = 1;
+        }
+    }
+
+    private void writeDownwardOnRowBy(int steps, SketchPad sketchPad) {
+        int [][] floor = sketchPad.getFloor();
+        int row = turtlePosition.getRow();
+        int column = turtlePosition.getColumn();
+        steps += column;
+
+        for (int i = row; i < steps; i++) {
+            floor[i][column] = 1;
+        }
+
+    }
+
+    private void writeForwardOnColumnBy(int steps, SketchPad sketchPad) {
+        int[][] floor = sketchPad.getFloor();
+        int row = turtlePosition.getRow();
+        int column = turtlePosition.getColumn();
+        steps += column;
+
+        for (int i = column; i < steps; i++) {
+            floor[row][i] = 1;
+        }
+
+    }
 
     private void decreaseRowBy(int steps) {
         if(turtlePosition.getRow() != 0){turtlePosition.setRow(turtlePosition.getRow() - (steps - 1));}
@@ -69,22 +108,6 @@ public class TurtleAgain {
         if((turtlePosition.getRow() + (steps - 1)) <= 4){turtlePosition.setRow(turtlePosition.getRow() + (steps - 1));};
     }
 
-    public void write() {
-        if(!isPenUp){
-
-        }
-    }
-
-    public SketchPad printSketchPad() {
-        return null;
-    }
-
-    public void write(int row, int column, int steps) {
-        new TurtlePosition(row, column);
-        moveForward(steps);
-        for (int i = 0; i < steps; i++) {
-        }
-    }
     }
 
 

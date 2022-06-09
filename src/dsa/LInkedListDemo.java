@@ -11,15 +11,12 @@ public class LInkedListDemo {
         states.add("Rivers");
         states.add("Oyo");
         states.add("Ogun");
-
         printList(states);
         System.out.println();
         states.add(1, "Bayelsa");
         printList(states);
-
-
-
-
+        states.remove("Abuja");
+        printList(states);
     }
 
     private static void printList(LinkedList<String> linkedList) {

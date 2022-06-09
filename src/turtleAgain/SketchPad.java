@@ -1,31 +1,44 @@
 package turtleAgain;
 
 public class SketchPad {
-    private int row;
-
-
-
-    private int column;
-    private String [][] sketchPad;
+//    private int row;
+//    private int column;
+    private int [][] floor;
 
     public SketchPad(int row, int column) {
-        sketchPad = new String[this.row = row][this.column = column];
+        floor = new int[row][column];
     }
 
-    public int getRow() {
-        return row;
+    public int[][] getFloor() {
+        return floor;
     }
 
-    public int getColumn() {
-        return column;
+    @Override
+    public String toString(){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (var row : floor) {
+           for( var column : row){
+               if (column == 0){ stringBuilder.append("  ");}
+               if (column == 1){ stringBuilder.append("* ");}
+           }
+            stringBuilder.append("\n");
+        }
+        return stringBuilder.toString();
     }
-
-    public void setRow(int row) {
-        this.row = row;
-    }
-
-    public void setColumn(int column) {
-        this.column = column;
-    }
+//    public int getRow() {
+//        return row;
+//    }
+//
+//    public int getColumn() {
+//        return column;
+//    }
+//
+//    public void setRow(int row) {
+//        this.row = row;
+//    }
+//
+//    public void setColumn(int column) {
+//        this.column = column;
+//    }
 
 }
