@@ -39,22 +39,19 @@ public class TicTacToe {
         return Arrays.deepToString(gameBoard);
     }
 
-    public void playGame(){
-        System.out.println("Enter cell number");
-        int cellNumber = input.nextInt();
-        play(cellNumber);
-    }
-    private void play(int cellNumber) {
+//    public void playGame(){
+//        System.out.println("Enter cell number");
+//        int cellNumber = input.nextInt();
+//        play(cellNumber);
+//    }
+    public void play(int cellNumber) {
         if(cellNumber > 0 && cellNumber <= 9) {
             if (gameTimer % 2 != 0) {
                 playerNumber = 1;
             } else {
                 playerNumber = 2;
             }
-//        System.out.printf("Player %d turn %n", playerNumber);
-//        System.out.println("Enter any number between 1 and 9: ");
-//        try {
-//            cellNumber = input.nextInt();
+
             switch (cellNumber) {
                 case 1 -> {
                     row = 0;
@@ -99,7 +96,8 @@ public class TicTacToe {
             }
             if (gameBoard[row][column] != INDICATOR.E) {
                 System.out.println("Cell already filled!!! \nPlay again!");
-                playGame();
+
+//                play();
             }else if (gameTimer % 2 == 0) {
                 gameBoard[row][column] = INDICATOR.O;
                 emptyElementCounter--;
@@ -110,15 +108,6 @@ public class TicTacToe {
         }
 
         }
-//        catch (ArrayIndexOutOfBoundsException e){
-//            System.out.println("Out of range! Play again!");
-//            play();
-//        }
-//        catch (InputMismatchException e){
-//            input.nextLine();
-//            System.out.println("Invalid input! Play again");
-//            play();
-//        }
 
 
     public INDICATOR viewCellNumber(int cellNumber) {

@@ -256,7 +256,7 @@ public class TurtleAgainTest {
         turtle.turnRight();
         assertEquals(new TurtlePosition(0, 1), turtle.checkCurrentTurtlePosition());
         turtle.turnLeft();
-//        turtle.turnLeft();
+        turtle.turnLeft();
         assertEquals(Direction.NORTH, turtle.checkCurrentPenDirection());
         turtle.putPenDown();
 
@@ -268,6 +268,6 @@ public class TurtleAgainTest {
                          \s
                          \s
                 """;
-//        assertEquals(expected, sketchPad.toString());
+        assertEquals(expected, sketchPad.toString());
     }
 }

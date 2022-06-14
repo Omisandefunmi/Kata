@@ -1,11 +1,16 @@
 package diaryTest;
 
 import diary.Diary;
+import diary.withUsers.MultiUserDiary;
+import diary.withUsers.User;
+import diary.withUsers.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -130,5 +135,40 @@ public class DiaryTest {
         assertEquals("New title || This is a new content || "+date, entry);
     }
 
+    @Test
+    public void testThatUserCanHaveDiary(){
+        User user = new User("Stockholm");
+        MultiUserDiary diary = new MultiUserDiary(user.getName(),"1234");
+        user.setDiary(diary);
+        diary.write("The vision","Everyone dreams","1234");
+        assertEquals(1, diary.getNoOfEntries());
+        String expected = """
+                Date : %s
+                Title: The vision
+                                
+                Body: Everyone dreams""", date;
+        assertEquals(expected, diary.toString());
 
+    }
+
+
+    @Test
+    public void testThatMultipleUsersCanHaveDiary(){
+        UserRepository userRepository = new UserRepository();
+        User user = new User("Stockholm");
+        User user2 = new User("Adewale");
+        MultiUserDiary diary = new MultiUserDiary(user.getName(),"1234");
+        MultiUserDiary diary1 = new MultiUserDiary(user2.getName(), "0000");
+        user.setDiary(diary);
+        diary.write("The vision","Everyone dreams","1234");
+        assertEquals(1, diary.getNoOfEntries());
+        String expected = """
+                Date : Mon, 13/06/2022, 06:18
+                Title: The vision
+                                
+                Body: Everyone dreams""";
+        assertEquals(expected, diary.toString());
+        assertEquals(2, userRepository.getNumberOfUsers());
+
+    }
 }

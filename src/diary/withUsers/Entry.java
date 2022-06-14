@@ -1,7 +1,5 @@
-package diary;
+package diary.withUsers;
 
-import java.text.DateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -17,8 +15,8 @@ public class Entry {
 
 
     }
-    
-    
+
+
 
     public String getTitle() {
         return title;
@@ -27,7 +25,7 @@ public class Entry {
     public String getBody() {
         return body;
     }
-    
+
     public String getDate(){
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("E, dd/MM/yyyy, hh:mm");
 
@@ -39,7 +37,7 @@ public class Entry {
                 Date : %s
                 Title: %s
                 
-                Body: %s""", getDate(),getTitle().toUpperCase(),getBody());
+                Body: %s""", getDate(),getTitle(),getBody());
     }
 
 
