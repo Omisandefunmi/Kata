@@ -1,4 +1,4 @@
-package diary.withUsers;
+package multiUserDiary;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -28,10 +28,15 @@ public class MultiUserDiaryMain {
 
     public static void runDiaryApp(){
         signInSignUpOptions();
+        startDiaryApp();
+    }
 
-//        diary = new MultiUserDiary(user.getName(), user.getPassword());
-//        diary = user.getDiary();
+    private static void startDiaryApp() {
+        displayWelcomeMessage();
+        operateDiary();
+    }
 
+    private static void displayWelcomeMessage() {
         System.out.println("\n".repeat(5));
         System.out.println(">".repeat(60));
         System.out.printf("""
@@ -46,9 +51,7 @@ public class MultiUserDiaryMain {
         System.out.println(">".repeat(60));
 
         System.out.println("\n".repeat(3));
-        operateDiary();
     }
-
 
 
     private static void printDiaryMenu(){
@@ -96,10 +99,14 @@ public class MultiUserDiaryMain {
     }
 
     private static void exitApp() {
+        System.out.println("<".repeat(40));
         System.out.println("""
-                Thanks for choosing Semicolon Diary App
+                    
+                    THANKS FOR CHOOSING SEMICOLON DIARY APP
                 
-                Goodbye....""");
+                                GOODBYE     
+                            """);
+        System.out.println("<".repeat(40));
         System.exit(0);
     }
 
@@ -274,7 +281,9 @@ public class MultiUserDiaryMain {
                 }
             }
         }
-        catch (InputMismatchException e){e.getMessage();}
+        catch (InputMismatchException e){
+            System.out.println(e.getMessage());
+            signInSignUpOptions();}
     }
 
     private static void signUp() {
@@ -285,9 +294,22 @@ public class MultiUserDiaryMain {
         user = new User(username, password);
         assignUserId();
         userRepository.addUsers(user);
-        System.out.println("Your user ID is "+user.getUserId()+"\n");
+        System.out.println("=".repeat(50));
+        System.out.println("=".repeat(50));
+        System.out.printf("""
+                
+                %s, your diary account creation is successful.
+                
+                Here are your log in details:
+                
+                - Your username is %s
+                - Your user ID is %s
+                
+                """, user.getName().toUpperCase(), user.getName(), user.getUserId());
+        System.out.println("=".repeat(50));
+        System.out.println("=".repeat(50));
         diary = user.getDiary();
-        operateDiary();
+        startDiaryApp();
     }
 
     private static void assignUserId() {
@@ -302,9 +324,9 @@ public class MultiUserDiaryMain {
         String userId = scanner.nextLine();
 
         if(userRepository.checkIfUserExists(username, userId)){
-            User user = userRepository.getUser(userId);
+            user = userRepository.fetchUserWith(userId);
             diary = user.getDiary();
-            operateDiary();
+            startDiaryApp();
         }
         else{
             System.out.println("User not found");

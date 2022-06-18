@@ -2,7 +2,6 @@ package ticTacToeAgainTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ticTacToe.TicTacToeAgain;
 import ticTacToeAgain.Player;
 import ticTacToeAgain.State;
 import ticTacToeAgain.TicTacToe;

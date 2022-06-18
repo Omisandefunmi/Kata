@@ -1,4 +1,4 @@
-package diary.withUsers;
+package multiUserDiary;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,7 @@ public class UserRepository {
         return  false;
     }
 
-    public User getUser(String userId) {
+    public User fetchUserWith(String userId) {
         StringBuilder id = new StringBuilder();
         for (int i = 3; i < userId.length(); i++) {
             char letter = userId.charAt(i);

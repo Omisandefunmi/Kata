@@ -1,4 +1,4 @@
-package diary.withUsers;
+package multiUserDiary;
 
 public class User {
     private String name;

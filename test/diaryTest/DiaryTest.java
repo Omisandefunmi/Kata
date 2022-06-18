@@ -1,16 +1,14 @@
 package diaryTest;
 
 import diary.Diary;
-import diary.withUsers.MultiUserDiary;
-import diary.withUsers.User;
-import diary.withUsers.UserRepository;
+import multiUserDiary.MultiUserDiary;
+import multiUserDiary.User;
+import multiUserDiary.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -137,10 +135,10 @@ public class DiaryTest {
 
     @Test
     public void testThatUserCanHaveDiary(){
-        User user = new User("Stockholm");
+        User user = new User("Stockholm", "7777");
         MultiUserDiary diary = new MultiUserDiary(user.getName(),"1234");
         user.setDiary(diary);
-        diary.write("The vision","Everyone dreams","1234");
+        diary.write("The vision","Everyone dreams");
         assertEquals(1, diary.getNoOfEntries());
         String expected = """
                 Date : %s
@@ -155,15 +153,15 @@ public class DiaryTest {
     @Test
     public void testThatMultipleUsersCanHaveDiary(){
         UserRepository userRepository = new UserRepository();
-        User user = new User("Stockholm");
-        User user2 = new User("Adewale");
-        MultiUserDiary diary = new MultiUserDiary(user.getName(),"1234");
-        MultiUserDiary diary1 = new MultiUserDiary(user2.getName(), "0000");
+        User user = new User("Stockholm", "1111");
+        User user2 = new User("Adewale", "4321");
+        MultiUserDiary diary = new MultiUserDiary(user.getName(), user.getPassword());
+        MultiUserDiary diary1 = new MultiUserDiary(user2.getName(), user2.getPassword());
         user.setDiary(diary);
-        diary.write("The vision","Everyone dreams","1234");
+        diary.write("The vision","Everyone dreams");
         assertEquals(1, diary.getNoOfEntries());
         String expected = """
-                Date : Mon, 13/06/2022, 06:18
+                Date : Mon, 13/06/2022, 06:42
                 Title: The vision
                                 
                 Body: Everyone dreams""";

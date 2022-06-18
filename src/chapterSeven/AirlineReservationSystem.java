@@ -14,10 +14,6 @@ public class AirlineReservationSystem {
             }
 
 
-
-
-
-
     public static boolean [] seats = new boolean[10];
     public static Scanner scanner = new Scanner(System.in);
     public static int ticketType;

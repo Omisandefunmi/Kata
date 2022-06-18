@@ -1,4 +1,4 @@
-package diary.withUsers;
+package multiUserDiary;
 
 import diary.Entry;
 

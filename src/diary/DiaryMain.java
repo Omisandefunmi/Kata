@@ -57,34 +57,22 @@ public class DiaryMain {
         while (!quit){
             int choice = scanner.nextInt();
             scanner.nextLine();
-            switch (choice){
-                case 1:
-                    createEntry();
-                    break;
-                case 2:
-                    editEntryInDiary();
-                    break;
-                case 3:
-                    searchEntryInDiary();
-                    break;
-                case 4:
-                    resetPassword();
-                    break;
-                case 5:
-                    deleteEntryInDiary();
-                    break;
-                case 6:
-                    viewEntries();
-                    break;
-                case 7:
+            switch (choice) {
+                case 1 -> createEntry();
+                case 2 -> editEntryInDiary();
+                case 3 -> searchEntryInDiary();
+                case 4 -> resetPassword();
+                case 5 -> deleteEntryInDiary();
+                case 6 -> viewEntries();
+                case 7 -> {
                     System.out.println("Diary closed");
                     quit = true;
-                    break;
-                default:
+                }
+                default -> {
                     System.out.println("Invalid option!!!");
                     System.out.println("\n".repeat(3));
                     sortChoice();
-
+                }
             }
         }
     }
