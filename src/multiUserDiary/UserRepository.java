@@ -15,8 +15,8 @@ public class UserRepository {
     }
 
     public boolean checkIfUserExists(String username, String userid){
-        for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getName().equalsIgnoreCase(username) && users.get(i).getUserId().equalsIgnoreCase(userid)){
+        for (User user : users) {
+            if (user.getName().equalsIgnoreCase(username) && user.getUserId().equalsIgnoreCase(userid)) {
                 return true;
             }
         }

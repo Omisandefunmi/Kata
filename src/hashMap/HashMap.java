@@ -29,7 +29,6 @@ public class HashMap {
 
 
 
-
         System.out.println(bioData.get("First Name")+"'s full details are: \n");
         for (Map.Entry item :
                 bioData.entrySet()) {

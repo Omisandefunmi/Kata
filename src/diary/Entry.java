@@ -14,8 +14,6 @@ public class Entry {
     public Entry(String title,  String body) {
         this.title = title;
         this.body = body;
-
-
     }
     
     

@@ -169,38 +169,33 @@ public class DiaryMain {
         int deleteChoice = scanner.nextInt();
         scanner.nextLine();
 
-        switch (deleteChoice){
-            case 1:
+        switch (deleteChoice) {
+            case 1 -> {
                 System.out.println("Enter entry ID");
                 int entryId = scanner.nextInt();
                 scanner.nextLine();
-
                 System.out.println("Enter password");
                 String pin = scanner.nextLine();
                 diary.deleteEntryBy(entryId, pin);
                 sortChoice();
-                break;
-
-            case 2:
+            }
+            case 2 -> {
                 System.out.println("Enter entry ID");
                 String title = scanner.nextLine();
-
                 System.out.println("Enter password");
-                pin = scanner.nextLine();
+                String pin = scanner.nextLine();
                 diary.deleteEntryByTitle(title, pin);
-                System.out.println("Entry "+title+ " deleted!!!");
+                System.out.println("Entry " + title + " deleted!!!");
                 sortChoice();
-                break;
-
-            case 3:
+            }
+            case 3 -> {
                 System.out.println("\n".repeat(2));
                 sortChoice();
-                break;
-
-            default:
+            }
+            default -> {
                 System.out.println("You have selected the wrong option");
                 deleteEntryInDiary();
-
+            }
         }
     }
 
@@ -213,6 +208,4 @@ public class DiaryMain {
         sortChoice();
 
     }
-
-
 }

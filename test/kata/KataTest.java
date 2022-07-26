@@ -52,6 +52,11 @@ public class KataTest {
 
     }
 
+    @Test
+    public void capitalizeFirstLetter(String word){
+
+    }
+
 //    @Test
 //    public void replaceElementsInArray(){
 //        int [] array = new int[10];
