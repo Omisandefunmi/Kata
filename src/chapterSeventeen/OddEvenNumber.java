@@ -2,8 +2,6 @@ package chapterSeventeen;
 
 import java.security.SecureRandom;
 import java.util.List;
-import java.util.Optional;
-import java.util.OptionalDouble;
 import java.util.function.IntPredicate;
 import java.util.stream.IntStream;
 
