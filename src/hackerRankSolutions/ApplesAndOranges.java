@@ -20,6 +20,7 @@ public class ApplesAndOranges {
         int a = 5;
         int b = 15;
 
+        countAppleAndOranges(s, t, a, b, apples, oranges);
         countAppleAndOrange(s, t, a, b, apples, oranges);
     }
     public static void countAppleAndOrange(int s, int t, int a, int b, List<Integer> apples, List<Integer> oranges){
@@ -38,6 +39,14 @@ public class ApplesAndOranges {
                 countOranges++;
             }
         }
+
+        System.out.println(countApples);
+        System.out.println(countOranges);
+    }
+
+    public static void countAppleAndOranges(int s, int t, int a, int b, List<Integer> apples, List<Integer> oranges){
+        int countApples = ((int) apples.stream().map(x -> x + a).toList().stream().filter(x -> x >= s && x <= t).count());
+        int countOranges = ((int) oranges.stream().map(x -> x + b).toList().stream().filter(x -> x >= s && x <= t).count());
 
         System.out.println(countApples);
         System.out.println(countOranges);
