@@ -36,15 +36,5 @@ public class Brackets {
         return characterStack.isEmpty();
     }
 
-    public static void main(String[] args) {
-        String bracks = "{}()[]<>";
-        String bracke = "{)}()[]<>";
-        String bracke2 = "12";
-        String bracke3 = "";
-        System.out.println(matchBrackets(bracke));
-        System.out.println(matchBrackets(bracks));
-        System.out.println(matchBrackets(bracke2));
-        System.out.println(matchBrackets(bracke3));
-
-    }
 }
+
