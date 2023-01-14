@@ -15,7 +15,7 @@ public class Fibonacci {
         result.append(a).append(" ").append(b);
         int sum;
         if (number < 1 ){
-            return "0";
+            return ""+a;
         }
         if (number == 1 ){
             return result.toString();
