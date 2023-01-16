@@ -10,7 +10,7 @@ public class StringRotation {
     }
 
     public static void main(String[] args) {
-        System.out.println(rotateString("inkling", 3));
+        System.out.println(rotateString("laptop", 3));
     }
 
 }
