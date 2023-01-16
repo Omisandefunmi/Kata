@@ -10,6 +10,8 @@ public class ThreadPractice {
 
         Thread anotherThread = new AnotherThread();
         anotherThread.start();
+        Thread myRunnable = new Thread(new MyRunnable());
+        myRunnable.start();
     }
 
 
